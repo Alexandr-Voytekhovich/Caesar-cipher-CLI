@@ -10,7 +10,7 @@ function encryptString(text, crypt) {
   })
 
   const encryptedArray = arrayFromString.map((el) => String.fromCharCode(el))
-  const encryptedString = encryptedArray.join('')
+  const encryptedString = encryptedArray.join('') + '\n'
 
   console.log('Your text has been successfully encrypted: ' + encryptedString)
 
@@ -29,7 +29,7 @@ function decryptString(text, key) {
   })
 
   const decryptedArray = arrayFromString.map((el) => String.fromCharCode(el))
-  const decryptedString = decryptedArray.join('')
+  const decryptedString = decryptedArray.join('') + '\n'
 
   console.log('Your text has been successfully decrypted: ' + decryptedString)
 
