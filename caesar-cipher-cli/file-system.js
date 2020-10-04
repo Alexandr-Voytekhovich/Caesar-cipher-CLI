@@ -6,7 +6,7 @@ const convertation = require('./convertation');
 function rewriteFile(data, path='./output-file/output-file.txt') {
   fs.writeFile(path, data, { flag: 'a+' }, (error) => {
       if(error) return process.stderr.write('ERROR'.underline.red + ': Output file path error!'.red + '\n')
-      console.log('Запись файла завершена.');
+      process.stdout.write('Запись файла успешно завершена.'.green + '\n');
     }
   )
 }
