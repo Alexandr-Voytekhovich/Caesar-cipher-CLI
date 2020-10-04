@@ -33,32 +33,50 @@ node cli.js ...options
 Каждый пункт 10 баллов, частичная реализация пункта 5 баллов. Каждый коммит после дедлайна (за исключением коммитов в README.md) минус 10 баллов
 
 - [x] - в корне репозитория создана папка с произвольным названием (например caesar-cipher-cli, task1 и т.п.), в которой расположены файлы с кодом программы;
-![alt1](1)
+  
+![#1](https://raw.githubusercontent.com/Alexandr-Voytekhovich/Caesar-cipher-CLI/master/screenshots/1.png?token=AONCF6ZG6RT52J6GKOKNMJC7PIU56)  
 - [x] - в README.md должно быть описано, как можно запустить программу из командной строки, описаны аргументы, которые можно передать приложению;
 - [x] - если переданы все аргументы, приложение читает из файла и записывает в файл зашифрованный/расшифрованный текст, при этом предыдущие записи не удаляются;  
-
+  
 ```node cli.js -m encrypt -k 2 -i ./input-file/input-file.txt -o ./output-file/output-file.txt```  
-![alt3](3)
-
-- [x] - если не переданы обязательные аргументы, приложение передает соответствующее сообщение в process.stderr и прoцесс завершается с кодом, отличным от 0;
+![#3](https://raw.githubusercontent.com/Alexandr-Voytekhovich/Caesar-cipher-CLI/master/screenshots/3.png?token=AONCF62Z3OPUEIT5KG7CKGK7PIVLE)
+- [x] - если не переданы обязательные аргументы, приложение передает соответствующее сообщение в process.stderr и прoцесс завершается с кодом, отличным от 0;  
+  
 ```node cli.js```  
-![alt4](4)
+![#4](https://raw.githubusercontent.com/Alexandr-Voytekhovich/Caesar-cipher-CLI/master/screenshots/4.png?token=AONCF6YKDQAJQS4SXDCFPC27PIVP2)  
+  
 ```node cli.js -m encrypt```  
-![alt5](5)
-- [x] - если переданы аргументы с путями к файлам, но файлы отсутствуют (или к ним невозможен доступ), приложение передает соответствующее сообщение в process.stderr и прoцесс завершается с кодом, отличным от 0;
-```node cli.js -m encrypt -k 2 -i ./input-file/input-file-13.txt -o ./output-file/output-file.txt```  
-![alt6](6) 
-```node cli.js -m encrypt -k 2 -i ./input-file/input-file.txt -o ./output-file-1/output-file.txt```  
-![alt7](7) 
-- [x] - если не передан аргумент с путем до файла на чтение, то чтение осуществляется из process.stdin
+![#5](https://raw.githubusercontent.com/Alexandr-Voytekhovich/Caesar-cipher-CLI/master/screenshots/5.png?token=AONCF63CPYYYKU5CEN7IQPK7PIVRK)
+- [x] - если переданы аргументы с путями к файлам, но файлы отсутствуют (или к ним невозможен доступ), приложение передает соответствующее сообщение в process.stderr и прoцесс завершается с кодом, отличным от 0;  
+  
+```node cli.js -m encrypt -k 2 -i ./input-file/input-file-13.txt -o ./output-file/output-file.txt```
+![#6](https://raw.githubusercontent.com/Alexandr-Voytekhovich/Caesar-cipher-CLI/master/screenshots/6.png?token=AONCF67MOITWWMR5V5EOAXS7PIVWE)  
+  
+```node cli.js -m encrypt -k 2 -i ./input-file/input-file.txt -o ./output-file-1/output-file.txt```
+![#7](https://raw.githubusercontent.com/Alexandr-Voytekhovich/Caesar-cipher-CLI/master/screenshots/7.png?token=AONCF622YQMKM2OYUV6FFVC7PIVY6) 
+- [x] - если не передан аргумент с путем до файла на чтение, то чтение осуществляется из process.stdin;  
+  
 ```node cli.js -m encrypt -k 2 -o ./output-file/output-file.txt```  
-![alt8](8) 
-- [x] - если не передан аргумент с путем до файла на запись, то вывод осуществляется в process.stdout
+![#8](https://raw.githubusercontent.com/Alexandr-Voytekhovich/Caesar-cipher-CLI/master/screenshots/8.png?token=AONCF65NALNV63X7JXJMVMC7PIV3A)
+- [x] - если не передан аргумент с путем до файла на запись, то вывод осуществляется в process.stdout;  
+  
 ```node cli.js -m encrypt -k 2 -i ./input-file/input-file.txt```  
-- [x] - шифруются/дешифруются только латинские буквы, регистр сохраняется, остальные символы не изменяются
-- [x] - если текст вводится из консоли, то программа не должна завершаться после выполнения шифровки/дешифровки введенного текста, т.е. должна быть возможность ввести еще текст
-- [x] - кодовая база не находится в одном файле, а разделена на файлы в соответствии с выполняемыми задачами (например - функция, преобразующая строку, в отдельном файле, код, создающий transform стрим, в отдельном файле, функция для парсинга и валидации аргументов в отдельном файле и т.п.)  
-
+![#9](https://raw.githubusercontent.com/Alexandr-Voytekhovich/Caesar-cipher-CLI/master/screenshots/9.png?token=AONCF65VSTQIQZFVESMK4RS7PIV7G)
+```node cli.js -m encrypt -k 2```  
+  
+![#10](https://raw.githubusercontent.com/Alexandr-Voytekhovich/Caesar-cipher-CLI/master/screenshots/10.png?token=AONCF6ZWHCPXKANY2E4DSNC7PIWE2) 
+- [x] - шифруются/дешифруются только латинские буквы, регистр сохраняется, остальные символы не изменяются;  
+  
+```node cli.js -m encrypt -k 2```  
+![#11](https://raw.githubusercontent.com/Alexandr-Voytekhovich/Caesar-cipher-CLI/master/screenshots/11.png?token=AONCF67MM32DLEX4LYQVMX27PIWIM) 
+- [x] - если текст вводится из консоли, то программа не должна завершаться после выполнения шифровки/дешифровки введенного текста, т.е. должна быть возможность ввести еще текст;  
+  
+```node cli.js -m encrypt -k 2```  
+![#10](https://raw.githubusercontent.com/Alexandr-Voytekhovich/Caesar-cipher-CLI/master/screenshots/10.png?token=AONCF6ZWHCPXKANY2E4DSNC7PIWE2) 
+- [x] - кодовая база не находится в одном файле, а разделена на файлы в соответствии с выполняемыми задачами (например - функция, преобразующая строку, в отдельном файле, код, создающий transform стрим, в отдельном файле, функция для парсинга и валидации аргументов в отдельном файле и т.п.);  
+  
+![#1](https://raw.githubusercontent.com/Alexandr-Voytekhovich/Caesar-cipher-CLI/master/screenshots/1.png?token=AONCF6ZG6RT52J6GKOKNMJC7PIU56)  
+  
 Если возникнут какие-либо вопросы - буду рад ответить: 
 - Telegram: https://t.me/AVT_tec
 - Discord: AVT (@ Alexandr-Voytekhovich #9749)  
