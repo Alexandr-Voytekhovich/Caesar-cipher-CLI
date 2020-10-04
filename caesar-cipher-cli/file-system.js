@@ -1,35 +1,64 @@
-const fs = require("fs");
+const fs = require('fs');
+var color = require('colors');
 const convertation = require('./convertation');
 
 
 function rewriteFile(data, path='./output-file/output-file.txt') {
-  fs.writeFile(path, data, { flag: 'a+' },
-  function(error) {
-    if(error) console.log('Произошла ошибка записи!');
-    console.log('Запись файла завершена.');
-  }
+  fs.writeFile(path, data, { flag: 'a+' }, (error) => {
+      if(error) return process.stderr.write('ERROR'.underline.red + ': Output file path error!'.red + '\n')
+      console.log('Запись файла завершена.');
+    }
   )
 }
 
 exports.writeFile = (
   method, 
   cryptKey, 
-  inputPath='./input-file/input-file.txt',
+  inputPath,
   outputPath
   ) => {
-    fs.readFile(inputPath, 'utf8', function (error, data) {
 
-      if (error) process.stderr.write('11111111111111111111omg')
+  if (method !== 'decrypt' && method !== 'encrypt') return process.stderr.write(
+    'ERROR'.underline.red 
+    + ': Invalid method passed!' + '\n' 
+    + 'Plese enter the correct method'.green + ' (encrypt'.bold.green + ' or'.green + ' decrypt)'.bold.green + '.' + '\n')
+  if (cryptKey < 0) return process.stderr.write(
+    'ERROR'.underline.red 
+    + ': Crypt key is negative!'.red + '\n' 
+    + 'Plese enter a positive key.'.green + '\n')
+  if (!cryptKey) return process.stderr.write(
+    'ERROR'.underline.red 
+    + ': The key is invalid or did not pass!'.red  
+    + '\n' + 'Plese enter a valid key.'.green + '\n')
 
-      let convertationData = ''
+  let convertationData = ''
 
-      if (method === 'encrypt' || method === 'e') {
-        convertationData = convertation.encrypt(data, cryptKey);
-      }
-      if (method === 'decrypt' || method === 'd') {
-        convertationData = convertation.decrypt(data, cryptKey);
-      } 
+  if(!inputPath) {
+    process.stdin.setEncoding('utf8');
 
-      rewriteFile(convertationData, outputPath)
-  })
+    process.stdin.on('readable', () => {
+      let inputValue = process.stdin.read()
+
+      convertationData = convertation.detect(method, inputValue, cryptKey)
+      
+      if (!outputPath) {
+        process.stdout.write(convertationData)
+      } else rewriteFile(convertationData, outputPath)
+      
+      process.stdin.resume()
+    });
+    } else {
+      fs.readFile(inputPath, 'utf8', function (error, data) {
+
+        if (error) return process.stderr.write('ERROR'.underline.red + ': Input file path error!'.red + '\n')
+  
+        convertationData = convertation.detect(method, data, cryptKey)
+
+        if (!outputPath) {
+          process.stdout.write(convertationData + '\n')
+        } else rewriteFile(convertationData, outputPath)
+        
+      })
+    }
+
 }
